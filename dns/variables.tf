@@ -1,0 +1,2 @@
+variable "cname" {}
+variable "record" {}
