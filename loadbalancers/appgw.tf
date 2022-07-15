@@ -160,7 +160,7 @@ resource "azurerm_application_gateway" "network" {
   redirect_configuration {
     name                 = "devlab_rdrct"
     redirect_type        = "Permanent"
-    target_listener_name = local.listener_name_https
+    target_listener_name = "${data.azurerm_virtual_network.devlab_vnet.name}-https"
   }
 
   ssl_certificate {
