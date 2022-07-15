@@ -14,3 +14,4 @@ locals {
   existingnsg             = "devlab_nsg"
   existingrt              = "devlab_rt"
 }
+
