@@ -60,7 +60,6 @@ locals {
   frontend_ip_configuration_name = "${data.azurerm_virtual_network.devlab_vnet.name}-feip"
   http_setting_name              = "${data.azurerm_virtual_network.devlab_vnet.name}-be-htst"
   listener_name                  = "${data.azurerm_virtual_network.devlab_vnet.name}-httplstn"
-  listener_name_https            = "${data.azurerm_virtual_network.devlab_vnet.name}-httpslstn"
   request_routing_rule_name      = "${data.azurerm_virtual_network.devlab_vnet.name}-rqrt"
   redirect_configuration_name    = "${data.azurerm_virtual_network.devlab_vnet.name}-rdrcfg"
 }
@@ -70,6 +69,7 @@ resource "azurerm_application_gateway" "network" {
   name                = join("-", [local.main, "devappgw"])
   resource_group_name = azurerm_resource_group.devlab_appgw_rg.name
   location            = local.buildregion
+  enable_http2        = true
 
   sku {
     name     = "WAF_v2"
@@ -129,7 +129,7 @@ resource "azurerm_application_gateway" "network" {
 
   ##.........Https Listener..........##
   http_listener {
-    name                           = local.listener_name_https
+    name                           = "${data.azurerm_virtual_network.devlab_vnet.name}-https"
     frontend_ip_configuration_name = local.frontend_ip_configuration_name
     frontend_port_name             = "${data.azurerm_virtual_network.devlab_vnet.name}-443"
     protocol                       = "Https"
@@ -150,7 +150,7 @@ resource "azurerm_application_gateway" "network" {
   request_routing_rule {
     name                       = local.request_routing_rule_name
     rule_type                  = "Basic"
-    http_listener_name         = local.listener_name_https
+    http_listener_name         = "${data.azurerm_virtual_network.devlab_vnet.name}-https"
     backend_address_pool_name  = local.backend_address_pool_name
     backend_http_settings_name = local.http_setting_name
     priority                   = 10
@@ -160,7 +160,7 @@ resource "azurerm_application_gateway" "network" {
   redirect_configuration {
     name                 = "devlab_rdrct"
     redirect_type        = "Permanent"
-    target_listener_name = local.listener_name_https
+    target_listener_name = "${data.azurerm_virtual_network.devlab_vnet.name}-https"
   }
 
   ssl_certificate {
