@@ -27,7 +27,7 @@ resource "azurerm_dns_a_record" "devlab_dns_a_record" {
   zone_name           = azurerm_dns_zone.devlab_dns_zones.name
   resource_group_name = azurerm_resource_group.devlab_dns_rg.name
   ttl                 = 60
-  records             = ["20.12.179.71"]
+  records             = ["20.9.16.37"]
 }
 
 resource "azurerm_dns_cname_record" "devlab_dns_cname_record" {
