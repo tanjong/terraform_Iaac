@@ -30,12 +30,12 @@ resource "azurerm_mssql_database" "sql_database" {
   sku_name       = "S0"
   zone_redundant = false
 
-   extended_auditing_policy {
-   storage_endpoint                        = azurerm_storage_account.sqldb_storageaccount.primary_blob_endpoint
-   storage_account_access_key              = azurerm_storage_account.sqldb_storageaccount.primary_access_key
-   storage_account_access_key_is_secondary = true
-   retention_in_days                       = 6
-  } 
+  #  extended_auditing_policy {
+  #  storage_endpoint                        = azurerm_storage_account.sqldb_storageaccount.primary_blob_endpoint
+  #  storage_account_access_key              = azurerm_storage_account.sqldb_storageaccount.primary_access_key
+  #  storage_account_access_key_is_secondary = true
+  #  retention_in_days                       = 6
+  # } 
 
   tags = local.db_tags
 }
