@@ -79,3 +79,4 @@ resource "azurerm_key_vault_secret" "win_keyvault_secret" {
 #   value        = random_password.sqldb_password.result
 #   key_vault_id = azurerm_key_vault.vault.id
 #   depends_on = [azurerm_key_vault.vault]
+
