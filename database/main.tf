@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "devlab_sqldb_rg" {
 }
 
 resource "azurerm_storage_account" "sqldb_storageaccount" {
-  name                     = join("", ["sqldb", "storageaccount"])
+  name                     = join("", ["sqldb", "saccount"])
   location                 = azurerm_resource_group.devlab_sqldb_rg.location
   resource_group_name      = azurerm_resource_group.devlab_sqldb_rg.name
   account_tier             = "Standard"
