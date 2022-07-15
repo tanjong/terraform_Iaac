@@ -88,7 +88,7 @@ resource "azurerm_application_gateway" "network" {
   }
 
   frontend_port {
-    name = "${data.azurerm_virtual_network.devlab_vnet.name}_443"
+    name = "${data.azurerm_virtual_network.devlab_vnet.name}-443"
     port = 443
   }
 
@@ -105,8 +105,8 @@ resource "azurerm_application_gateway" "network" {
     name                  = local.http_setting_name
     cookie_based_affinity = "Disabled"
     path                  = "/"
-    port                  = 80
-    protocol              = "Http"
+    port                  = 443
+    protocol              = "Https"
     request_timeout       = 60
   }
 
@@ -122,7 +122,7 @@ resource "azurerm_application_gateway" "network" {
   http_listener {
     name                           = local.listener_name_https
     frontend_ip_configuration_name = local.frontend_ip_configuration_name
-    frontend_port_name             = "${data.azurerm_virtual_network.devlab_vnet.name}_443"
+    frontend_port_name             = "${data.azurerm_virtual_network.devlab_vnet.name}-443"
     protocol                       = "Https"
     ssl_certificate_name           = "brooklyntj.net"
   }
