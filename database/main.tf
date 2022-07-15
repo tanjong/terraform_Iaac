@@ -17,7 +17,7 @@ resource "azurerm_mssql_server" "sql_server" {
   resource_group_name          = azurerm_resource_group.devlab_sqldb_rg.name
   version                      = "12.0"
   administrator_login          = join("", [local.main, "sqladmin"])
-  administrator_login_password = data.azurerm_key_vault_secret.exisitingkeyvaultsecret.value #"4-v3ry-53cr37-p455w0rd"
+  administrator_login_password = "4-v3ry-53cr37-p455w0rd" #data.azurerm_key_vault_secret.exisitingkeyvaultsecret.value 
 }
 
 resource "azurerm_mssql_database" "sql_database" {
@@ -46,3 +46,4 @@ resource "azurerm_mssql_firewall_rule" "sql_fwRule" {
   start_ip_address = "75.28.18.240"
   end_ip_address   = "75.28.18.240"
 }
+
