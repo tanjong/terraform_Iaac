@@ -3,19 +3,19 @@ variable "path_to_publickey" {
   default = "linuxvmkey.pub"
 }
 
-variable "db_username" {
-  type = string
-}
+# variable "db_username" {
+#   type = string
+# }
 
-variable "db_password" {
-  type = string
-}
+# variable "db_password" {
+#   type = string
+# }
 
-variable "db_name" {
-  type = string
-}
+# variable "db_name" {
+#   type = string
+# }
 
-variable "windowssecret" {}
+# variable "windowssecret" {}
 
 # variable "devlab_statestorage_rg" {
 #   type    = string
@@ -26,3 +26,4 @@ variable "windowssecret" {}
 #   type    = string
 #   default = "statestorage_account"
 # }
+

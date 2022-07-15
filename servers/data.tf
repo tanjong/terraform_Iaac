@@ -20,10 +20,10 @@ data "azurerm_network_security_group" "devlab_nsg" {
   resource_group_name = local.existingmainrg
 }
 
-data "azurerm_virtual_machine" "linux_vm" {
-  name                = local.existinglinuxvm
-  resource_group_name = local.existinglinuxvmrg
-}
+# data "azurerm_virtual_machine" "linux_vm" {
+#   name                = local.existinglinuxvm
+#   resource_group_name = local.existinglinuxvmrg
+# }
 
 data "azurerm_route_table" "devlab_rt" {
   name                = local.existingrt
@@ -47,13 +47,13 @@ data "template_cloudinit_config" "userdata" {
 
   part {
     content_type = "text/x-shellscript"
-    filename     = "nginx"
+    filename     = "apache2"
     content = templatefile("./templates/apache.tpl",
 
       {
-        db_username = var.db_username
-        db_password = var.db_password
-        db_name     = var.db_name
+        # db_username = var.db_username
+        # db_password = var.db_password
+        # db_name     = var.db_name
         # mssql_sqlserver = data.azurerm_mssql_server.devlab_sqldb_rg.fully_qualified_domain_name
         # appgateway = data.azurerm_application_gateway.network.id
     })
