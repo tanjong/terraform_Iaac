@@ -37,3 +37,4 @@ resource "azurerm_dns_cname_record" "devlab_dns_cname_record" {
   ttl                 = 60
   record              = var.record
 }
+
