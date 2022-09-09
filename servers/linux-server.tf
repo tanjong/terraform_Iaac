@@ -33,7 +33,7 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
   resource_group_name = azurerm_resource_group.devlab_linuxvm_rg.name
   size                = "Standard_D2s_v3"
   admin_username      = "adminuser"
-  user_data           = data.template_cloudinit_config.userdata.rendered #use for data lookups
+  # user_data           = data.template_cloudinit_config.userdata.rendered #use for data lookups
   network_interface_ids = [
     azurerm_network_interface.linux_nic.id,
   ]
